@@ -1,0 +1,16 @@
+{
+  "name": "be-itfest",
+  "version": "1.0.0",
+  "description": "Backend IT Fest",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "mysql2": "^3.6.2"
+  }
+}
