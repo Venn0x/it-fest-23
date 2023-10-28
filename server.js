@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
     getFoodPage(req, res, startfrom);
   }
 
-  else if (req.url.match(/\/api\/food\/map\/\w+\/\w+/) && req.method === 'GET') {
+  else if (req.url.match(/\/api\/food\/map\/\d+(\.\d+)\/\d+(\.\d+)/) && req.method === 'GET') {
     const x = req.url.split('/')[4];
     const y = req.url.split('/')[5];
     getFoodMap(req, res, x, y);
@@ -87,6 +87,43 @@ module.exports = server;
 
 /*
 
+//
+
+User controller:
+
+GET /api/user/{user_id}
+Retrieves information about the user
+
+POST /api/user/create
+Creates an user. Raw body: {name, email, password}
+
+Food controller:
+
+GET /api/food/info/{food_id}
+Retrieves information about a food listing
+
+GET /api/food/index/{start_from_index (descending)}
+Retrieves a list of food offers. 
+
+GET /api/food/map/{x}/{y}
+Retrieves a list of food offers in the map range
+
+POST /api/food/create
+Creates a food offer. Raw body: {user_id, name, info, x, y, grams, price, cooking_time, alergens, portions}
+
+Review controller:
+
+GET /api/review/index/{seller_id}/{start_from_index}
+Retrieves a list of reviews for a seller
+
+GET /api/review/average/{seller_id}
+Retrieves an object containing the average stars for reviews (max 5) and the total number of reviews for that seller
+
+POST /api/review/create
+Creates a review. Raw body: {user_id, seller_id, stars, food_id, review_text}
+
+
+//
 
 POST user/create -> upload in db //1
 POST user/profile_pic -> upload in storage bucket 
